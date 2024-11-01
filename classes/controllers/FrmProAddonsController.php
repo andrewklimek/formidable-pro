@@ -78,7 +78,7 @@ class FrmProAddonsController extends FrmAddonsController {
 			$type = isset( $addons['error']['type'] ) ? $addons['error']['type'] : $type;
 		}
 
-		if ( ! is_callable( 'self::get_pro_from_addons' ) ) {
+		if ( ! is_callable( 'FrmProAddonsController::get_pro_from_addons' ) ) {
 			$pro = isset( $addons['93790'] ) ? $addons['93790'] : array();
 		} else {
 			$pro = self::get_pro_from_addons( $addons );

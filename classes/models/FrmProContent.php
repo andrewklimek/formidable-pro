@@ -782,7 +782,7 @@ class FrmProContent {
 			return;
 		}
 
-		if ( stripos( $replace_with, $atts['like'] ) === false ) {
+		if ( ! is_string( $replace_with ) || stripos( $replace_with, $atts['like'] ) === false ) {
 			$replace_with = '';
 		}
 	}

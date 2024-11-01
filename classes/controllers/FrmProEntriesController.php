@@ -1414,12 +1414,13 @@ class FrmProEntriesController {
 	}
 
 	public static function filter_shortcode_value( $value, $tag, $atts, $field ) {
-		if ( isset( $atts['striphtml'] ) && $atts['striphtml'] ) {
-			self::kses_deep( $atts, $value );
-		} elseif ( ! isset( $atts['keepjs'] ) || ! $atts['keepjs'] ) {
-			FrmAppHelper::sanitize_value( 'wp_kses_post', $value );
+		if ( $value ) {
+			if ( isset( $atts['striphtml'] ) && $atts['striphtml'] ) {
+				self::kses_deep( $atts, $value );
+			} elseif ( ! isset( $atts['keepjs'] ) || ! $atts['keepjs'] ) {
+				FrmAppHelper::sanitize_value( 'wp_kses_post', $value );
+			}
 		}
-
 		return self::get_option_label_for_saved_value( $value, $field, $atts );
 	}
 

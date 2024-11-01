@@ -244,7 +244,7 @@ class FrmProFieldDate extends FrmFieldType {
 				$atts['format'] = $atts['date_format'];
 			}
 
-			$value = FrmProFieldsHelper::format_values_in_array( $value, $atts['format'], array( 'self', 'get_date' ) );
+			$value = FrmProFieldsHelper::format_values_in_array( $value, $atts['format'], 'FrmProFieldsHelper::get_date' );
 		}
 
 		return $value;

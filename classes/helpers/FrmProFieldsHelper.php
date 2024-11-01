@@ -2778,7 +2778,7 @@ class FrmProFieldsHelper {
 			$date_format = apply_filters( 'frm_date_format', get_option( 'date_format' ) );
 		}
 
-		return self::format_values_in_array( $date, $date_format, array( 'self', 'get_single_date' ) );
+		return self::format_values_in_array( $date, $date_format, self::class . '::get_single_date' );
 	}
 
 	public static function get_single_date( $date, $date_format ) {
