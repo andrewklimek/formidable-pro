@@ -616,7 +616,7 @@ class FrmProContent {
 			$old_replace_with = $replace_with;
 
 			// Only get the displayed value if it hasn't been set yet
-			if ( is_numeric( $replace_with ) || is_numeric( str_replace( array( ',', ' ' ), array( '', '' ), $replace_with ) ) || is_array( $replace_with ) ) {
+			if ( is_numeric( $replace_with ) || ( ! is_null( $replace_with ) && is_numeric( str_replace( array( ',', ' ' ), array( '', '' ), $replace_with ) ) ) || is_array( $replace_with ) ) {
 				$replace_with = FrmFieldsHelper::get_display_value( $replace_with, $field, $atts );
 				if ( $old_replace_with == $replace_with ) {
 					$replace_with = '';
@@ -624,7 +624,7 @@ class FrmProContent {
 			}
 
 			// Get the linked field to properly evaluate conditions
-			if ( $replace_with !== '' && isset( $atts['show'] ) && ! empty( $atts['show'] ) ) {
+			if ( $replace_with !== '' && ! empty( $atts['show'] ) ) {
 				$show_field = FrmField::getOne( $atts['show'] );
 				if ( $show_field && in_array( $show_field->type, array( 'time', 'date', 'user_id' ) ) ) {
 					$field = $show_field;
@@ -633,7 +633,7 @@ class FrmProContent {
 			}
 		}
 
-		if ( ( $field && $field->type == 'user_id' ) || in_array( $tag, array( 'updated_by', 'created_by' ) ) ) {
+		if ( ( $field && $field->type === 'user_id' ) || in_array( $tag, array( 'updated_by', 'created_by' ), true ) ) {
 			// check if conditional is for current user
 			if ( isset( $atts['equals'] ) && $atts['equals'] == 'current' ) {
 				$atts['equals'] = get_current_user_id();
