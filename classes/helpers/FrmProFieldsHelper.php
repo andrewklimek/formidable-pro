@@ -36,6 +36,8 @@ class FrmProFieldsHelper {
 			$value    = $dynamic_value;
 		}
 
+		if ( is_null( $value ) ) return '';
+
 		$pass_args = array(
 			'allow_array' => $allow_array,
 			'field'       => $field,
