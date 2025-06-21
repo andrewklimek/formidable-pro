@@ -61,7 +61,7 @@ class FrmProMathController {
 	 */
 	private static function get_math_expression_from_shortcode_content( $content, $atts ) {
 		$expression = do_shortcode( $content );
-		$expression = preg_replace( '/&#8211;/', '-', $expression );
+		$expression = str_replace( '–', '-', $expression );
 		$expression = self::clear_expression_of_extra_characters( $expression, $atts );
 
 		return $expression;
